@@ -73,20 +73,21 @@ void draw() {
     yCellOver = constrain(yCellOver, 0, height/cellSize - 1);
 
     // Check against cells in buffer
-    if (cellsBuffer[xCellOver][yCellOver] == 1) {
-      // Cell is alive
+    if (cellsBuffer[xCellOver][yCellOver] == 1) { // If cell is alive then a dead cell would cover the live cell
       cells[xCellOver][yCellOver] = 0; // Cell dies
       fill(dead); // Fills dead cell's colour
       
     } else { 
-      cells[xCellOver][yCellOver] = 1; // Make alive
-      fill(alive); // Fill alive colour
+      cells[xCellOver][yCellOver] = 1; // Else the cell lives
+      fill(alive); // Fill alive cell's colour
     }
   } 
   
+  // Created a string within setup
   PFont font= createFont("Georgia", 64);
-  String states = "Scenario: " + state;
+  String states = "Scenario: " + state; // Change the scenario depending on the keyPressed function
   String pausing = "Pause";
+  
   fill(0, 255, 100);
   textFont (font);
   textSize(64);
@@ -107,7 +108,7 @@ void iteration() { // When the clock ticks
   for (int x = 0; x < width/cellSize; x++) {
     for (int y = 0; y < height/cellSize; y++) {
       // Will visit all the neighbours of each cell
-      int neighbours = 0; // CountS the neighbours
+      int neighbours = 0; // Counts the neighbours
       for (int col = x - 1; col <= x + 1; col++) {
         for (int row= y - 1; row <= y + 1; row++) {  
           if (((col >= 0) && (col < width/cellSize)) && ((row >= 0) && (row < height/cellSize))) { // Checks that it is not out of bounds
@@ -178,10 +179,3 @@ void keyPressed() {
     }
   }
 }
-
-/*
-STATE ANY ASSUMPTION YOU MAKE ABOUT THE PROBLEM
-
-1. The grid: I tried to possibly start a grid in which the cell would have a different size than the grid
-
-*/
