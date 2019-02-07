@@ -19,6 +19,8 @@ You start with a blank grid in which if mouse pressed then you may add "lives" t
 
 1. Underpopulated
 
+![underpopulated](https://user-images.githubusercontent.com/29228151/52413776-6824f380-2ada-11e9-98f1-c2edd53ac745.gif)
+
 2. Overcrowded
 
 3. Survival/Creation of Life
