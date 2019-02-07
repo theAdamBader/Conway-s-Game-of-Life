@@ -23,8 +23,12 @@ You start with a blank grid in which if mouse pressed then you may add "lives" t
 
 2. Overcrowded
 
+![overcrowded](https://user-images.githubusercontent.com/29228151/52414184-86d7ba00-2adb-11e9-8998-e350a7ad4fcb.gif)
+
 3. Survival/Creation of Life
 
 When you press 3, you can watch the cells being passed onto its next generation until you have a creation of life where the cells will equal to three.
+
+![nextgenerations](https://user-images.githubusercontent.com/29228151/52414409-25641b00-2adc-11e9-9b60-6993c3c87a22.gif)
 
 You may press the SPACEBAR to pause the sketch and add or delete cells or press C to clear the grid and start with a new set of cells.
