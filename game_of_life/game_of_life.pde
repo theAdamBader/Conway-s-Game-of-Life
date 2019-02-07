@@ -8,6 +8,7 @@
 
 // Size of cells
 int cellSize = 15;
+int gridSize = 25;
 
 // Creating a state for each scenario
 int state = 0;
@@ -41,7 +42,7 @@ void setup() {
 
 
 void draw() {
-   
+  
   // Draws a grid
   for (int x = 0; x < width/cellSize; x++) {
     for (int y = 0; y < height/cellSize; y++) {
@@ -174,8 +175,31 @@ void keyPressed() {
     pause = true;
     for (int x=0; x<width/cellSize; x++) {
       for (int y=0; y<height/cellSize; y++) {
-        cells[x][y] = 0; // Save all to zero
+        cells[x][y] = 0; // Kills all live cells by reverting all back to zero
       }
     }
   }
 }
+
+/*
+STATE ANY ASSUMPTION YOU MAKE ABOUT THE PROBLEM
+
+1. The grid: I tried to possibly start a grid in which the cell would have a different size than the grid; however, as I had to add rect within the grid so that players could add cells, 
+   I instantiate arrays and had to use a constrain function so that it could create a black rect within the white rect. Assuming I added a line object rather than rect, it would work and 
+   allow to have an ellipse to draw but the problem is that the ellipse would probably not be centre within the line grid.
+
+2. Iteration: Whilst creating the iteration was easy but as it was not interacting well with manually adding cells. I had to add a time function 'millis' so that it could time each iteration it goes 
+   through the cells it would keep track however the intervals did not help with the speed it was generating so created a lastTimeRecord so it would go a pace that would be suitable. Also, would have 
+   been interesting to create a slider or knob that would allow the user to control the speed of each iteration. Assuming another could be framerate function and add how many frames to add for each 
+   second for an iteration.
+   
+3. Cells (Array): Big problem for me was trying to use an array list which complicated the process and used an array instead however, as mentioned in the grid I tried to make the grid separate from the 
+   cell however, the issue would be mapping. Assuming, I could add noStroke object then added a grid to have a similar size as the rect then I could have a separate thing from the cells itself
+   
+4. States: Whilst using states in a keyPressed function works. There is a possibility of using switch statements and if used then that would be efficient as it would not need much runtime as keyPressed 
+   and states
+   
+5. Scenarios: Assuming I have done the scenarios correctly, the issue was to maybe have enable a timer to recongn`ise when it hits scenario 4 and as for 5, it would be pressing C but it would it be 5/0 or 
+   form of algorithm that would recognise when it starts if the neighbours are equal to three
+   
+*/
