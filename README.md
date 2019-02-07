@@ -19,7 +19,7 @@ You start with a blank grid in which if mouse pressed then you may add "lives" t
 
 1. Underpopulated
 
-![underpopulated](https://gph.is/2WP6RPi)
+<iframe src="https://giphy.com/embed/fnuQoKPEbJ9UIBHkqw" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/fnuQoKPEbJ9UIBHkqw">via GIPHY</a></p>
 
 2. Overcrowded
 
