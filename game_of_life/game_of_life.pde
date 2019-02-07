@@ -1,11 +1,10 @@
 /* CONWAY'S GAME OF LIFE*/
-// Start with a blank canvas that has no life cells, allowing the user to add life cells by mouse click on the grid, and then you can press SPACE to unpause,
-// which by default it would start with scenario 1, in which you may press the following keys to change the scenarios:
+// Start with a blank canvas that has no life cells, allowing the user to add life cells by mouse click/drag on the grid, and then you can press the following to unpause:
 // Press 1: Underpopulation 
 // Press 2: Overcrowding
 // Press 3: Survival/Creation of Life
 // Press C: To clear the grid and start anew
-// Press SPACE: To pause and unpause the sketch
+// Press SPACE: To pause the sketch
 
 // Size of cells
 int cellSize = 15;
@@ -55,7 +54,7 @@ void draw() {
     }
   }
 
-  // Iterate if timer ticks
+  // Iterates the timer
   if (millis() - lastRecordedTime > interval) {
     if (!pause) {
       iteration();
@@ -65,39 +64,39 @@ void draw() {
 
   // Create  new cells manually on pause
   if (pause && mousePressed) {
-    // Map and avoid out of bound errors
+    
+    // Map and avoids out of bound errors when adding cells
     int xCellOver = int(map(mouseX, 0, width, 0, width/cellSize));
-    xCellOver = constrain(xCellOver, 0, width/cellSize-1);
+    xCellOver = constrain(xCellOver, 0, width/cellSize - 1);
+    
     int yCellOver = int(map(mouseY, 0, height, 0, height/cellSize));
-    yCellOver = constrain(yCellOver, 0, height/cellSize-1);
+    yCellOver = constrain(yCellOver, 0, height/cellSize - 1);
 
     // Check against cells in buffer
-    if (cellsBuffer[xCellOver][yCellOver]==1) { // Cell is alive
-      cells[xCellOver][yCellOver]=0; // Kill
-      fill(dead); // Fill with dead cell colour
-    } else { // Cell is dead
-      cells[xCellOver][yCellOver]=1; // Make alive
+    if (cellsBuffer[xCellOver][yCellOver] == 1) {
+      // Cell is alive
+      cells[xCellOver][yCellOver] = 0; // Cell dies
+      fill(dead); // Fills dead cell's colour
+      
+    } else { 
+      cells[xCellOver][yCellOver] = 1; // Make alive
       fill(alive); // Fill alive colour
     }
-  } else if (pause && !mousePressed) { // And then save to buffer once mouse goes up
-    // Save cells to buffer (so we opeate with one array keeping the other intact)
-    for (int x = 0; x < width/cellSize; x++) {
-      for (int y = 0; y < height/cellSize; y++) {
-        cellsBuffer[x][y] = cells[x][y];
-      }
-    }
-  }
+  } 
   
   PFont font= createFont("Georgia", 64);
   String states = "Scenario: " + state;
-  fill(0, 155, 255);
+  String pausing = "Pause";
+  fill(0, 255, 100);
   textFont (font);
   textSize(64);
   text (states, 10, 50);
+  if(pause == true){ // If pause is true then add pause text to the sketch
+  text (pausing, 1000, 50);}
 }
 
 void iteration() { // When the clock ticks
-  // Save cells to buffer (so we opeate with one array keeping the other intact)
+  // Save cells to buffer so it keeps the other intacted and interactable
   for (int x = 0; x < width/cellSize; x++) {
     for (int y = 0; y < height/cellSize; y++) {
       cellsBuffer[x][y] = cells[x][y];
@@ -108,7 +107,7 @@ void iteration() { // When the clock ticks
   for (int x = 0; x < width/cellSize; x++) {
     for (int y = 0; y < height/cellSize; y++) {
       // Will visit all the neighbours of each cell
-      int neighbours = 0; // Will count the neighbours
+      int neighbours = 0; // CountS the neighbours
       for (int col = x - 1; col <= x + 1; col++) {
         for (int row= y - 1; row <= y + 1; row++) {  
           if (((col >= 0) && (col < width/cellSize)) && ((row >= 0) && (row < height/cellSize))) { // Checks that it is not out of bounds
@@ -121,7 +120,7 @@ void iteration() { // When the clock ticks
         }
       }
 
-      // Checks the neigbours then it will apply the rules
+      // Checks the neigbours then it will apply the rules when key pressed
       if (state == 1 && cellsBuffer[x][y] == 1) { // Underpopulation
         if (neighbours < 2) { 
           cells[x][y] = 0; // Dies if less than 2
@@ -149,20 +148,23 @@ void keyPressed() {
 
   // Each key represents a state
   if (key == '1') {
+    pause = false;
     state = 1;
   }
 
   if (key == '2') {
+    pause = false;
     state = 2;
   }
   
   if (key == '3') {
+    pause = false;
     state = 3;
   }
   
-  // Pauses and unpause the sketch and would set on state 1
+  // Pauses the sketch 
   if (key == ' ') {
-    pause = !pause;
+    pause = true;
   }
 
  // Clears the sketch (scenario 5) and pauses it
@@ -176,3 +178,10 @@ void keyPressed() {
     }
   }
 }
+
+/*
+STATE ANY ASSUMPTION YOU MAKE ABOUT THE PROBLEM
+
+1. The grid: I tried to possibly start a grid in which the cell would have a different size than the grid
+
+*/
