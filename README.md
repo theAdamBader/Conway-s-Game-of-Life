@@ -18,6 +18,7 @@ Each cell interacts with its eight neighbours which are cell that occur horizont
 You start with a blank grid in which if mouse pressed then you may add "lives" to the grid and when you press one of the key pressed buttons (1, 2 or 3) then the following should happen:
 
 1. Underpopulated
+![](https://giphy.com/gifs/fnuQoKPEbJ9UIBHkqw)
 
 2. Overcrowded
 
